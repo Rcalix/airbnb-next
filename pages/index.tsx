@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import Banner from '../components/Banner';
 import SmallCard from '../components/SmallCard';
 import MediumCard from '../components/MediumCard';
+import LargeCard from '../components/LargeCard';
+import Footer from '../components/Footer';
 const Home: NextPage = ({exploreData, cardsData} : any) => {
 
   return (
@@ -26,15 +28,21 @@ const Home: NextPage = ({exploreData, cardsData} : any) => {
         </section>
         <section>
           <h2 className='text-4xl font-semibold py-8'>Live anywhere</h2>
-          <div className='flex space-x-3 overflow-scroll'>
-
-          {cardsData?.map((item : any) => (
-            <MediumCard key={item.img} img={item.img} title={item.title}/>
-          ))}
-                    </div>
-
+          <div className="flex space-x-5 overflow-scroll p-3 -ml-3 scrollbar-hide">
+        {cardsData?.map(({ img, title }) => (
+          <MediumCard key={img} img={img} title={title} />
+        ))}
+      </div>
         </section>
+        <LargeCard img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Wishlists curated by Airbnb"
+          buttonText="Get Inspired"
+          />
       </main>
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   )
 }
