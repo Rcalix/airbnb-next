@@ -7,6 +7,11 @@ import SmallCard from '../components/SmallCard';
 import MediumCard from '../components/MediumCard';
 import LargeCard from '../components/LargeCard';
 import Footer from '../components/Footer';
+
+type cardsDataType = {
+  img: string,
+  title: string
+}
 const Home: NextPage = ({exploreData, cardsData} : any) => {
 
   return (
@@ -29,7 +34,7 @@ const Home: NextPage = ({exploreData, cardsData} : any) => {
         <section>
           <h2 className='text-4xl font-semibold py-8'>Live anywhere</h2>
           <div className="flex space-x-5 overflow-scroll p-3 -ml-3 scrollbar-hide">
-        {cardsData?.map(({ img, title }) => (
+        {cardsData?.map(({ img, title }: cardsDataType) => (
           <MediumCard key={img} img={img} title={title} />
         ))}
       </div>
