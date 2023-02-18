@@ -40,7 +40,7 @@ const Footer = () => {
                 <p>Investors</p>
                 <p>Airbnb Plus</p>
                 <p>Airbnb Luxe</p>
-
+˜
             </div>
             </div>
         </div>
