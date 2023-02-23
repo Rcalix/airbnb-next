@@ -2,6 +2,7 @@ import { format } from "date-fns";
 import { useRouter } from "next/router";
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import InfoCard from "../components/InfoCard";
 
 type ISearch = {
     location?: string,
@@ -9,7 +10,21 @@ type ISearch = {
     endDate?: string,
     numberOfGuess?: number
 }
-function Search () {
+export type ISearchResults = {
+    description: string,
+    img: string
+    lat:  number
+    location: string
+    long: number
+    price: string
+    star: number
+    title: string
+    total: string 
+}
+type ISearchProps  = { 
+    searchResults: ISearchResults[]
+}
+function Search ({searchResults}: ISearchProps) {
     const router = useRouter();
     const { location, startDate, numberOfGuess, endDate }: ISearch = router.query;
     const formattedStartDate = format(new Date(startDate ? startDate : new Date()), 'dd MMMM yyyy')
@@ -29,6 +44,9 @@ function Search () {
                     <p className="button">Price</p>
                     <p className="button">Rooms and Beds</p>
                 </div>
+                {searchResults.length && searchResults?.map((item: ISearchResults) =>
+                    <InfoCard {...item}/>
+                )}
             </section>
            </main>
            <Footer/>
@@ -36,4 +54,13 @@ function Search () {
     )
 }
 
-export default Search
+export default Search;
+
+export async function getStaticProps() {
+    const searchResults = await fetch('https://www.jsonkeeper.com/b/5NPS').then(res => res.json()) satisfies ISearchResults[];
+    return {
+        props: {
+            searchResults,
+        }
+    }
+}
