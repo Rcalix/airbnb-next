@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import InfoCard from "../components/InfoCard";
+import MapComponent from "../components/MapComponent";
 
 type ISearch = {
     location?: string,
@@ -45,8 +46,11 @@ function Search ({searchResults}: ISearchProps) {
                     <p className="button">Rooms and Beds</p>
                 </div>
                 {searchResults.length && searchResults?.map((item: ISearchResults) =>
-                    <InfoCard {...item}/>
+                    <InfoCard key={item.long} {...item}/>
                 )}
+            </section>
+            <section className="hidden xl:inline-flex xl:min-w-[600px]">
+                <MapComponent searchResults={searchResults}/>
             </section>
            </main>
            <Footer/>
