@@ -55,18 +55,3 @@ const MapComponent = ({searchResults}: ISearchProps) => {
 }
 
 export default MapComponent;
-
-
-// {'long' in selectedLocation && selectedLocation.long === res.long ? (
-//     <Popup 
-//         latitude={res.lat}
-//         longitude={res.long}
-//     >
-//         {res.title}
-//     </Popup>
-//     <Popup longitude={res.long} latitude={res.lat}
-//     anchor="bottom">
-//     You are here
-
-//   </Popup>
-// ): (false)}
